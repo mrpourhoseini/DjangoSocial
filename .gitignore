@@ -76,5 +76,5 @@ dmypy.json
 .pyre/
 .pytype/
 cython_debug/
-.idea
-node_modules!/static/src/output.css
+./static/src/output.css
+
