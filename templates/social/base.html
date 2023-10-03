@@ -17,7 +17,7 @@
 
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
 
-        {% include 'social/header.html' %}
+        {% include 'social/header.html' with user=request.user %}
         {% include 'social/sidebar.html' %}
 
         {% block content %}
