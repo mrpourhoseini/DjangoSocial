@@ -23,192 +23,117 @@
         ></div>
       </div>
 
+        {% for post in post_list %}
+            <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 mb-4">
 
-      <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 mb-4">
+                <section class="bg-white dark:bg-gray-900">
 
-
-        <section class="bg-white dark:bg-gray-900">
-
-            <div class="mx-auto max-w-screen-xl">
-                <div class="grid md:grid-cols-2">
-                    {# POST #}
-                    <div class="p-4 md:p-8">
-                        {# AUTHOR #}
-                        <div class="flex items-center space-x-4 mb-2">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
+                    <div class="mx-auto max-w-screen-xl">
+                        <div class="grid md:grid-cols-2">
+                            {# POST #}
+                            <div class="p-4 md:p-8">
+                                {# AUTHOR #}
+                                <div class="flex items-center space-x-4 mb-2">
+                                    <div class="flex-shrink-0">
+                                        <img class="w-8 h-8 rounded-full" src="{{ post.author.profile.avatar.url }}" alt="{{ post.author.get_full_name|slugify }}">
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ post.author.get_full_name|title }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ post.created_at|timesince }} ago
+                                        </p>
+                                    </div>
+                                </div>
+                                {# CONTENT #}
+                                <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">{{ post.body|capfirst }}</p>
                             </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    Neil Sims
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    2 days ago
-                                </p>
-                            </div>
-                        </div>
-                        {# CONTENT #}
-                        <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Static websites are now used to bootstrap lots of websites and are becoming the basis for a variety of tools that even influence both web designers and developers.</p>
-                    </div>
-                    {# COMMENT #}
-                    <div class="p-4 md:p-8">
-                        {# REACTION #}
-                        <div class="mb-2">
-                            <div class="flex justify-between rounded-md shadow-sm" role="group">
+                            {# COMMENT #}
+                            <div class="p-4 md:p-8">
+                                {# REACTION #}
+                                <div class="mb-2">
+                                    <div class="flex justify-between rounded-md shadow-sm" role="group">
 
-                                <div>
-                                  <button data-tooltip-target="tooltip-like" type="button" class="mr-2">
-                                      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z"/>
-                                      </svg>
-                                  </button>
-                                  <div id="tooltip-like" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                      Like
-                                      <div class="tooltip-arrow" data-popper-arrow></div>
-                                  </div>
+                                        <div>
+                                          <button data-tooltip-target="tooltip-like" type="button" class="mr-2">
+                                              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z"/>
+                                              </svg>
+                                          </button>
+                                          <div id="tooltip-like" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                              Like
+                                              <div class="tooltip-arrow" data-popper-arrow></div>
+                                          </div>
 
-                                  <button data-tooltip-target="tooltip-comment" type="button">
-                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h9M5 9h5m8-8H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h4l3.5 4 3.5-4h5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
-                                    </svg>
-                                  </button>
-                                  <div id="tooltip-comment" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                      Comment
-                                      <div class="tooltip-arrow" data-popper-arrow></div>
-                                  </div>
+                                          <button data-tooltip-target="tooltip-comment" type="button">
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h9M5 9h5m8-8H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h4l3.5 4 3.5-4h5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
+                                            </svg>
+                                          </button>
+                                          <div id="tooltip-comment" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                              Comment
+                                              <div class="tooltip-arrow" data-popper-arrow></div>
+                                          </div>
+                                        </div>
+
+                                        <div>
+                                          <button data-tooltip-target="tooltip-save" type="button">
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 19-6-5-6 5V2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17Z"/>
+                                            </svg>
+                                          </button>
+                                          <div id="tooltip-save" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                              Save
+                                              <div class="tooltip-arrow" data-popper-arrow></div>
+                                          </div>
+                                        </div>
+
+                                    </div>
                                 </div>
 
-                                <div>
-                                  <button data-tooltip-target="tooltip-save" type="button">
-                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 19-6-5-6 5V2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17Z"/>
-                                    </svg>
-                                  </button>
-                                  <div id="tooltip-save" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                      Save
-                                      <div class="tooltip-arrow" data-popper-arrow></div>
-                                  </div>
-                                </div>
+
+                                <ul class="max-w-md">
+
+                                   {% for comment in post.postComment.all|slice:5 %}
+
+                                    <li class="pb-3 sm:pb-4">
+                                      <div class="flex">
+                                          <div class="flex items-center space-x-4 mr-2">
+                                             <div class="flex-shrink-0">
+                                                <img class="w-8 h-8 rounded-full" src="{{ comment.user.profile.avatar.url }}" alt="{{ comment.user.get_full_name|slugify }}">
+                                             </div>
+                                             <div class="flex-1 min-w-0">
+                                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                   {{ comment.user.username }}
+                                                </p>
+                                                <p class="text-xs text-gray-500 truncate dark:text-gray-400">
+                                                   {{ comment.created_at|timesince }} ago
+                                                </p>
+                                             </div>
+                                          </div>
+                                         <div class="text-sm text-gray-900 dark:text-white">
+                                            {{ comment.body|slice:":60" }}...
+                                         </div>
+                                      </div>
+                                   </li>
+                                   {% empty %}
+
+                                    <li class="pb-3 sm:pb-4 text-gray-900 dark:text-white">No comments have been made yet.</li>
+
+                                   {% endfor %}
+
+                                </ul>
+
 
                             </div>
                         </div>
-
-
-                        <ul class="max-w-md">
-
-                           <li class="pb-3 sm:pb-4">
-                              <div class="flex">
-                                  <div class="flex items-center space-x-4 mr-2">
-                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                                     </div>
-                                     <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                           Neil Sims
-                                        </p>
-                                        <p class="text-xs text-gray-500 truncate dark:text-gray-400">
-                                           2 days ago
-                                        </p>
-                                     </div>
-                                  </div>
-                                 <div class="text-sm text-gray-900 dark:text-white">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quidem!
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="pb-3 sm:pb-4">
-                              <div class="flex">
-                                  <div class="flex items-center space-x-4 mr-2">
-                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                                     </div>
-                                     <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                           Neil Sims
-                                        </p>
-                                        <p class="text-xs text-gray-500 truncate dark:text-gray-400">
-                                           2 days ago
-                                        </p>
-                                     </div>
-                                  </div>
-                                 <div class="text-sm text-gray-900 dark:text-white">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quidem!
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="pb-3 sm:pb-4">
-                              <div class="flex">
-                                  <div class="flex items-center space-x-4 mr-2">
-                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                                     </div>
-                                     <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                           Neil Sims
-                                        </p>
-                                        <p class="text-xs text-gray-500 truncate dark:text-gray-400">
-                                           2 days ago
-                                        </p>
-                                     </div>
-                                  </div>
-                                 <div class="text-sm text-gray-900 dark:text-white">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quidem!
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="pb-3 sm:pb-4">
-                              <div class="flex">
-                                  <div class="flex items-center space-x-4 mr-2">
-                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                                     </div>
-                                     <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                           Neil Sims
-                                        </p>
-                                        <p class="text-xs text-gray-500 truncate dark:text-gray-400">
-                                           2 days ago
-                                        </p>
-                                     </div>
-                                  </div>
-                                 <div class="text-sm text-gray-900 dark:text-white">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quidem!
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="pb-3 sm:pb-4">
-                              <div class="flex">
-                                  <div class="flex items-center space-x-4 mr-2">
-                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                                     </div>
-                                     <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                           Neil Sims
-                                        </p>
-                                        <p class="text-xs text-gray-500 truncate dark:text-gray-400">
-                                           2 days ago
-                                        </p>
-                                     </div>
-                                  </div>
-                                 <div class="text-sm text-gray-900 dark:text-white">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quidem!
-                                 </div>
-                              </div>
-                           </li>
-
-                        </ul>
-
-
                     </div>
-                </div>
-            </div>
 
-        </section>
+                </section>
 
-
-      </div>
-
+              </div>
+        {% endfor %}
     </main>
 
 
